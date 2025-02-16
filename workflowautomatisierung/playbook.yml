@@ -1,0 +1,8 @@
+---
+- name: Add Hosts to Known Hosts and Ping
+  hosts: all   # Muss mit der Gruppe in der inventory.ini übereinstimmen
+  gather_facts: no
+  tasks:
+    - name: Ping the server
+      ansible.builtin.ping:
+
