@@ -1,0 +1,16 @@
+---
+- name: Installiere nginx auf der hostgruppe "web"
+  hosts: web
+  become: yes # Play als admin ausführen
+  tasks: 
+
+    - name: Install nginx on machine
+      dnf: 
+        name: nginx
+        state: present
+    
+    - name: Start and enable nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes

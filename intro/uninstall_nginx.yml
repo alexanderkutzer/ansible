@@ -1,0 +1,18 @@
+---
+- name: Deinstalliere nginx auf der Hostgruppe "web"
+  hosts: web
+  become: yes # Play als Admin ausführen
+  tasks:
+
+    - name: Stoppe nginx Service
+      service:
+        name: nginx
+        state: stopped
+      ignore_errors: yes  # Falls nginx nicht läuft, wird das Playbook nicht abgebrochen
+
+    - name: Entferne nginx Paket
+      dnf:
+        name: nginx
+        state: absent
+
+    

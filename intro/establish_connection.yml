@@ -1,0 +1,12 @@
+---
+- name: Add all hosts to list of known hosts and test connection
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Write all hosts to known_hosts
+      delegate_to: localhost
+      run_once: false
+      ansible.builtin.shell: "ssh-keyscan -H {{ inventory_hostname }} >> ~/.ssh/known_hosts"
+
+    - name: Ping all hosts
+      ansible.builtin.ping:
